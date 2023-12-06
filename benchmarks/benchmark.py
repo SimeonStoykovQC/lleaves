@@ -147,23 +147,31 @@ if __name__ == "__main__":
     )
     NYC_X = feature_enginering().fit_transform(df).astype(np.float32)
 
-    df = pd.read_csv("data/airline_data_factorized.csv")
-    airline_X = df.to_numpy(np.float32)
-
-    df = pd.read_parquet("data/mtpl2.parquet")
-    mtpl2_X = df.to_numpy(np.float32)
+    # df = pd.read_csv("data/airline_data_factorized.csv")
+    # airline_X = df.to_numpy(np.float32)
+    #
+    # df = pd.read_parquet("data/mtpl2.parquet")
+    # mtpl2_X = df.to_numpy(np.float32)
 
     model_file_NYC = "../tests/models/NYC_taxi/model.txt"
-    model_file_airline = "../tests/models/airline/model.txt"
-    model_file_mtpl2 = "../tests/models/mtpl2/model.txt"
+    # model_file_airline = "../tests/models/airline/model.txt"
+    # model_file_mtpl2 = "../tests/models/mtpl2/model.txt"
 
     run_benchmark(
-        model_files=[model_file_NYC, model_file_airline, model_file_mtpl2],
-        np_data=[NYC_X, airline_X, mtpl2_X],
+        model_files=[
+            model_file_NYC,
+            # model_file_airline,
+            # model_file_mtpl2,
+        ],
+        np_data=[
+            NYC_X,
+            # airline_X,
+            # mtpl2_X,
+        ],
         model_classes=[
-            LLVMModel,
-            LGBMModel,
-            TreeliteModel,
+            # LLVMModel,
+            # LGBMModel,
+            # TreeliteModel,
             ONNXModel,
         ],
         threadcount=[1],
@@ -171,20 +179,20 @@ if __name__ == "__main__":
         n_samples=20000,
     )
 
-    run_benchmark(
-        model_files=[model_file_mtpl2],
-        np_data=[mtpl2_X],
-        model_classes=[
-            LLVMModel,
-            LGBMModel,
-            TreeliteModel,
-            ONNXModel,
-        ],
-        threadcount=[4],
-        batchsizes=[
-            10000,
-            100000,
-            1000000,
-        ],
-        n_samples=100,
-    )
+    # run_benchmark(
+    #     model_files=[model_file_mtpl2],
+    #     np_data=[mtpl2_X],
+    #     model_classes=[
+    #         LLVMModel,
+    #         LGBMModel,
+    #         TreeliteModel,
+    #         ONNXModel,
+    #     ],
+    #     threadcount=[4],
+    #     batchsizes=[
+    #         10000,
+    #         100000,
+    #         1000000,
+    #     ],
+    #     n_samples=100,
+    # )

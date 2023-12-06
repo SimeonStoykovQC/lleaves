@@ -10,7 +10,7 @@ setup(
     name="lleaves",
     use_scm_version=True,
     setup_requires=["setuptools_scm"],
-    packages=find_packages(exclude=["benchmarks"]),
+    packages=find_packages(exclude=[]),
     url="https://github.com/siboehm/lleaves",
     project_urls={"Documentation": "https://lleaves.readthedocs.io/en/latest/"},
     license="MIT",
