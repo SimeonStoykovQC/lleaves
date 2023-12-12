@@ -90,11 +90,11 @@ class ONNXModel(BenchmarkModel):
             ],
             target_opset=8,
         )
-        onnxmltools.utils.save_model(onnx_model, "/tmp/model.onnx")
+        onnxmltools.utils.save_model(onnx_model, "./model.onnx")
         options = rt.SessionOptions()
         options.inter_op_num_threads = n_threads
         options.intra_op_num_threads = n_threads
-        self.model = rt.InferenceSession("/tmp/model.onnx", sess_options=options)
+        self.model = rt.InferenceSession("./model.onnx", sess_options=options)
         self.input_name = self.model.get_inputs()[0].name
         self.label_name = self.model.get_outputs()[0].name
 
@@ -174,9 +174,9 @@ if __name__ == "__main__":
             # TreeliteModel,
             ONNXModel,
         ],
-        threadcount=[1],
-        batchsizes=[1, 2, 3, 5, 7, 10, 20, 30, 50, 70, 100, 200, 300],
-        n_samples=20000,
+        threadcount=[1, 4, 8],
+        batchsizes=[100_000],
+        n_samples=10,
     )
 
     # run_benchmark(
